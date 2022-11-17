@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function App() {
-    const [testimonies, setTestimonies] = useState({});
+    const [testimonies, setTestimonies] = useState();
 
     async function getResponse() {
         try {
@@ -22,7 +22,12 @@ function App() {
 
     return (
         <div className="App">
-            <h1>Hello World!</h1>
+            <h1>Testimonies</h1>
+            <ul>
+                {testimonies?.map((testimony) => (
+                    <li key={testimony.id}>{testimony.name}</li>
+                ))}
+            </ul>
         </div>
     );
 }
