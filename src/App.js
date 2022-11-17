@@ -21,6 +21,7 @@ function App() {
             );
 
             setTestimonies(sortedTestimonies);
+            console.log(testimonies);
         } catch (error) {
             console.log(error);
         }
@@ -40,13 +41,13 @@ function App() {
     return (
         <div className="App">
             <Container maxWidth="lg">
-                <Grid container spacing={2}>
-                    <h1>Testimonies</h1>
-                    <ul>
-                        {testimonies?.map((testimony) => (
-                            <TestimonyCard testimony={testimony} />
-                        ))}
-                    </ul>
+                <Grid container direction="row" justifyContent="center">
+                    {testimonies?.map((testimony) => (
+                        <TestimonyCard
+                            key={testimony.id}
+                            testimony={testimony}
+                        />
+                    ))}
                 </Grid>
             </Container>
         </div>
