@@ -6,6 +6,7 @@ import { TESTIMONIES_API_URL } from "./api";
 function App() {
     const [testimonies, setTestimonies] = useState();
 
+    // Obtrining data from the API
     async function getResponse() {
         try {
             const response = await axios.get(TESTIMONIES_API_URL);
@@ -20,6 +21,13 @@ function App() {
         }
     }
 
+    // Remove testimony function
+    const removeTestimony = (index) => {
+        const newArray = testimonies.filter((item) => item.id !== index);
+        setTestimonies(newArray);
+    };
+
+    // Get data on App load
     useEffect(() => {
         getResponse();
     }, []);
@@ -31,6 +39,9 @@ function App() {
                 {testimonies?.map((testimony) => (
                     <li key={testimony.id}>
                         {testimony.name} - &nbsp;<span>{testimony.rating}</span>
+                        <button onClick={(e) => removeTestimony(testimony.id)}>
+                            Remove
+                        </button>
                     </li>
                 ))}
             </ul>
