@@ -20,8 +20,8 @@ function App() {
                 (objA, objB) => Number(objB.rating) - Number(objA.rating)
             );
 
+            // Adding sorted testimonies
             setTestimonies(sortedTestimonies);
-            console.log(testimonies);
         } catch (error) {
             console.log(error);
         }
