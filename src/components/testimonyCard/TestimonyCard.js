@@ -37,7 +37,17 @@ const TestimonyCard = (props) => {
                 }
             />
             <CardContent sx={{ paddingTop: 0.5, paddingBottom: 0 }}>
-                <Typography variant="body2" fontSize={14}>
+                <Typography
+                    variant="body2"
+                    fontSize={14}
+                    sx={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        display: "-webkit-box",
+                        WebkitLineClamp: "3",
+                        WebkitBoxOrient: "vertical",
+                    }}
+                >
                     {testimony.message}
                 </Typography>
             </CardContent>
