@@ -17,16 +17,24 @@ const TestimonyCard = (props) => {
                     />
                 }
                 action={<Quotes size={32} weight="fill" />}
-                title={testimony.name}
+                title={
+                    <Typography variant="body2" fontSize={16}>
+                        {testimony.name}
+                    </Typography>
+                }
                 subheader={
                     <Box color={"black"} display={"flex"} alignItems={"center"}>
-                        <MapPin color={"black.500"} size={18} weight="fill" />
-                        <span>{testimony.location}</span>
+                        <MapPin color={"black.500"} size={16} weight="fill" />
+                        <Typography variant="body2">
+                            {testimony.location}
+                        </Typography>
                     </Box>
                 }
             />
-            <CardContent sx={{ paddingTop: 0.5 }}>
-                <Typography variant="body2">{testimony.message}</Typography>
+            <CardContent sx={{ paddingTop: 0.5, paddingBottom: 0 }}>
+                <Typography variant="body2" fontSize={14}>
+                    {testimony.message}
+                </Typography>
             </CardContent>
             <CardContent>
                 <Box
