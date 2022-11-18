@@ -1,12 +1,17 @@
 import Typography from "@mui/material/Typography";
-import { Card, CardHeader, CardContent, Avatar, Box } from "@mui/material/";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
 import { Quotes, MapPin, TrashSimple } from "phosphor-react";
 
 const TestimonyCard = (props) => {
     const testimony = props.testimony;
 
     return (
-        <Card sx={{ maxWidth: 272, m: 1 }}>
+        <Card sx={{ maxWidth: 320, m: 1 }}>
             <CardHeader
                 sx={{ paddingBottom: 0.5 }}
                 avatar={
@@ -42,8 +47,15 @@ const TestimonyCard = (props) => {
                     alignItems={"center"}
                     justifyContent={"space-between"}
                 >
-                    <span>Rating:&nbsp;{testimony.rating}</span>
-                    <TrashSimple size={24} weight="fill" color={"grey"} />
+                    <Typography variant="body2">
+                        Rating:&nbsp;
+                        <Box component="span" fontWeight="bold">
+                            {testimony.rating}
+                        </Box>
+                    </Typography>
+                    <IconButton>
+                        <TrashSimple size={24} weight="fill" color={"grey"} />
+                    </IconButton>
                 </Box>
             </CardContent>
         </Card>
