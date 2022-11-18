@@ -53,7 +53,9 @@ const TestimonyCard = (props) => {
                             {testimony.rating}
                         </Box>
                     </Typography>
-                    <IconButton>
+                    <IconButton
+                        onClick={(e) => props.removeTestimony(testimony.id)}
+                    >
                         <TrashSimple size={24} weight="fill" color={"grey"} />
                     </IconButton>
                 </Box>

@@ -46,6 +46,7 @@ function App() {
                         <TestimonyCard
                             key={testimony.id}
                             testimony={testimony}
+                            removeTestimony={removeTestimony}
                         />
                     ))}
                 </Grid>
