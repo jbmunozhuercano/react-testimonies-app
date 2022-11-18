@@ -46,6 +46,7 @@ const TestimonyCard = (props) => {
                         display: "-webkit-box",
                         WebkitLineClamp: "3",
                         WebkitBoxOrient: "vertical",
+                        wordBreak: "break-all",
                     }}
                 >
                     {testimony.message}
