@@ -40,7 +40,7 @@ function App() {
 
     return (
         <div className="App">
-            <Container maxWidth="lg">
+            <Container maxWidth="xl">
                 <Grid container direction="row" justifyContent="center">
                     {testimonies?.map((testimony) => (
                         <TestimonyCard
