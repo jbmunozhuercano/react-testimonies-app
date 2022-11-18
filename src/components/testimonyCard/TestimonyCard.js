@@ -64,6 +64,7 @@ const TestimonyCard = (props) => {
                         </Box>
                     </Typography>
                     <IconButton
+                        aria-label="remove"
                         onClick={(e) => props.removeTestimony(testimony.id)}
                     >
                         <TrashSimple size={22} weight="fill" color={"grey"} />
