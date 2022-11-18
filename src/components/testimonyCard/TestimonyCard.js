@@ -11,7 +11,7 @@ const TestimonyCard = (props) => {
     const testimony = props.testimony;
 
     return (
-        <Card sx={{ maxWidth: 320, m: 1 }}>
+        <Card sx={{ maxWidth: 330, m: 1 }}>
             <CardHeader
                 sx={{ paddingBottom: 0.5 }}
                 avatar={
@@ -46,7 +46,6 @@ const TestimonyCard = (props) => {
                         display: "-webkit-box",
                         WebkitLineClamp: "3",
                         WebkitBoxOrient: "vertical",
-                        wordBreak: "break-all",
                     }}
                 >
                     {testimony.message}
@@ -67,7 +66,7 @@ const TestimonyCard = (props) => {
                     <IconButton
                         onClick={(e) => props.removeTestimony(testimony.id)}
                     >
-                        <TrashSimple size={24} weight="fill" color={"grey"} />
+                        <TrashSimple size={22} weight="fill" color={"grey"} />
                     </IconButton>
                 </Box>
             </CardContent>
