@@ -1,27 +1,34 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import TestimonyCard from "./components/testimonyCard/TestimonyCard";
 
 import { TESTIMONIES_API_URL } from "./api";
 
+const useTestimonies = () => {
+    const [testimonies, setTestimonies] = useState([]);
+    let sortedTestimonies = useRef([]);
+
+    useEffect(() => {
+        // Sorting testimonies
+        sortedTestimonies.current = testimonies.sort(
+            (objA, objB) => Number(objB.rating) - Number(objA.rating)
+        );
+        setTestimonies(sortedTestimonies.current);
+    }, [testimonies]);
+
+    return [testimonies, setTestimonies, sortedTestimonies.current];
+};
+
 function App() {
-    const [testimonies, setTestimonies] = useState();
+    const [testimonies, setTestimonies] = useTestimonies();
 
     // Obtaining data from the API
     async function getResponse() {
         try {
             const response = await axios.get(TESTIMONIES_API_URL);
             setTestimonies(response.data);
-
-            // Sorting testimonies by rating
-            const sortedTestimonies = response.data.sort(
-                (objA, objB) => Number(objB.rating) - Number(objA.rating)
-            );
-
-            // Adding sorted testimonies
-            setTestimonies(sortedTestimonies);
         } catch (error) {
             console.log(error);
         }
