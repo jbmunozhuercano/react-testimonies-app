@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import TestimonyCard from "./components/testimonyCard/TestimonyCard";
@@ -7,28 +7,33 @@ import TestimonyCard from "./components/testimonyCard/TestimonyCard";
 import { TESTIMONIES_API_URL } from "./api";
 
 const useTestimonies = () => {
-    const [testimonies, setTestimonies] = useState([]);
-    let sortedTestimonies = useRef([]);
+    const [testimonies, setTestimonies] = useState();
 
-    useEffect(() => {
-        // Sorting testimonies
-        sortedTestimonies.current = testimonies.sort(
+    // Order testimonies by rating
+    const sortTestimonies = (array) => {
+        const sortedTestimonies = array.sort(
             (objA, objB) => Number(objB.rating) - Number(objA.rating)
         );
-        setTestimonies(sortedTestimonies.current);
+        setTestimonies(sortedTestimonies);
+    };
+
+    useEffect(() => {
+        if (typeof testimonies === "object") {
+            sortTestimonies(testimonies);
+        }
     }, [testimonies]);
 
-    return [testimonies, setTestimonies, sortedTestimonies.current];
+    return [testimonies, sortTestimonies];
 };
 
 function App() {
-    const [testimonies, setTestimonies] = useTestimonies();
+    const [testimonies, sortTestimonies] = useTestimonies();
 
     // Obtaining data from the API
     async function getResponse() {
         try {
-            const response = await axios.get(TESTIMONIES_API_URL);
-            setTestimonies(response.data);
+            const { data } = await axios.get(TESTIMONIES_API_URL);
+            sortTestimonies(data);
         } catch (error) {
             console.log(error);
         }
@@ -37,7 +42,7 @@ function App() {
     // Remove testimony by id
     const removeTestimony = (index) => {
         const newArray = testimonies.filter((item) => item.id !== index);
-        setTestimonies(newArray);
+        sortTestimonies(newArray);
     };
 
     // Get data on App load
