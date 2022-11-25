@@ -17,12 +17,6 @@ const useTestimonies = () => {
         setTestimonies(sortedTestimonies);
     };
 
-    useEffect(() => {
-        if (typeof testimonies === "object") {
-            sortTestimonies(testimonies);
-        }
-    }, [testimonies]);
-
     return [testimonies, sortTestimonies];
 };
 
